@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://kit.fontawesome.com/04298be0bb.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/9ba3f6cb6e.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+</head>
+
+<body>
+  <div class="modal" id="loader" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+
+    <center>
+      <div class="loader"></div>
+    </center>
+
+  </div>
+  <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id='nav-page'>
+    <div class="container-fluid" id='container-da-navbar'>
+      <a class="navbar-brand" href="{{route('home')}}">
+        <img id='logo-fibracem' src="images/fibracem.png">
+      </a>
+      <button class="navbar-toggler" id='botao-fechador2' type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-dollar-sign"></i><br>
+              <span class='descricao-menu'>Financeiro</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class='descritivo-principal'>
+                <a href="#"><span class='descritivo-submenu'>Viagens</span></a>
+                <ul class="dropdown-menu sub-menu">
+                  <a href="{{ route('hotel_request.create') }}">
+                    <li class='descritivo-principal'> - Solicitar Nova Viagem</li>
+                  </a>
+                  <a href="{{ route('hotel_request.minha_solicitacao') }}">
+                    <li class='descritivo-principal'> - Minhas Solicitações</li>
+                  </a>
+                  <a href="{{ route('hotel_request.aprovar_solicitacao') }}">
+                    <li class='descritivo-principal'> - Aprovar Solicitações</li>
+                  </a>
+                </ul>
+              </li>
+              <li class='descritivo-principal'>
+                <a href="#"><span class='descritivo-submenu'>Gestor Viagens</span></a>
+                <ul class="dropdown-menu sub-menu">
+                  <a href="{{ route('hotel_request.solicitacao_aberta') }}">
+                    <li class='descritivo-principal'> - Viagens Abertas</li>
+                  </a>
+                  <a href="{{ route('hotel_request.aprovada_solicitacao') }}">
+                    <li class='descritivo-principal'> - Viagens Aprovadas</li>
+                  </a>
+                  <a href="{{ route('hotel_request.solicitacao_comprada') }}">
+                    <li class='descritivo-principal'> - Viagens Compradas</li>
+                  </a>
+                </ul>
+              </li>
+              <li class='descritivo-principal'>
+                <a href="#"><span class='descritivo-submenu'>Contas</span></a>
+                <ul class="dropdown-menu sub-menu">
+                  <a href="{{ route('duplicatas_pagar.index') }}">
+                    <li class='descritivo-principal'> - Duplicatas a Pagar</li>
+                  </a>
+                  <a href="#" class='visivel'>
+                    <li class='descritivo-principal'> - Duplicatas a Pagar</li>
+                  </a>
+                  <a href="#" class='visivel'>
+                    <li class='descritivo-principal'> - Duplicatas a Pagar</li>
+                  </a>
+                </ul>
+              </li>
+              <li class='descritivo-principal'>
+                <a href="#"><span class='descritivo-submenu'>Cadastros</span></a>
+                <ul class="dropdown-menu sub-menu">
+                  <a href="{{ route('duplicatas_pagar.cadastro_condic_pagamento') }}">
+                    <li class='descritivo-principal'> - Cadastro Condição</li>
+                  </a>
+                  <a href="{{ route('hotel_request.cadastro_forneced') }}">
+                    <li class='descritivo-principal'> - Cadastro Fornecedores</li>
+                  </a>
+                  <a href="{{ route('hotel_request.cadastro_services') }}">
+                    <li class='descritivo-principal'> - Cadastro Serviços</li>
+                  </a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-circle-check"></i><br>
+              <span class='descricao-menu'>Qualidade</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',5) }}">Abrir Solicitação</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',5) }}">Minhas Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('respostaCPNC.dashboard') }}">CPNCs Painel</a></li>
+              <!-- <li><a href="{{ route('respostaCPNC.setor_cpnc') }}">CPNCs Pendentes</a></li> -->
+              <!-- <li><a href="{{ route('respostaCPNC.setor_cpnc_respondidas') }}">CPNCs Respondidas</a></li> -->
+
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[5]) }}">Solicitações Abertas</a></li>
+              <li><a class="dropdown-item" href="{{ route('CPNC.cpncs_adm') }}">Gerenciar CPNC</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.gestor',5) }}">Solicitações Abertas</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.todos',[5,0,50,1,0]) }}">Finalizados</a></li>
+              <li><a class="dropdown-item" href="{{ Route('CPNC.cpncs_produto_lib') }}">Incluir Liberação</a></li>
+
+
+              <li><a class="dropdown-item" href="{{ route('setores.index') }}">Configurar Setores</a></li>
+              <li><a class="dropdown-item" href="{{ route('motivosCPNC.index') }}">Configurar Motivos CPNC</a></li>
+
+
+              <li><a class="dropdown-item" href="{{ route('qualidade_imagens_index') }}">Registrar Imagens</a></li>
+              <li><a class="dropdown-item" href="{{ route('fotosCPNC.index') }}">Registrar Imagens CPNC</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-dolly"></i><br>
+              <span class='descricao-menu'>Logística</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('reservas.modalidades',3) }}">Agendar Recebimento</a></li>
+              <li><a class="dropdown-item" href="{{ route('inventario.edit') }}">Inventário Cego</a></li>
+              <li><a class="dropdown-item" href="{{ route('inventario.recontagem',5) }}">Inventário Recontagem</a></li>
+              <li><a class="dropdown-item" href="{{ route('inventario.recontagemHistorico') }}">Histórico Recontagem</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bookmark"></i><br>
+              <span class='descricao-menu'>Reservas</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('reservas.modalidades',1) }}">Sala de Reunião</a></li>
+              <li><a class="dropdown-item" href="{{ route('reservas.modalidades',2) }}"> Veículos</a></li>
+              <li><a class="dropdown-item" href="{{ route('reservas.modalidades',4) }}"> Laboratório da Qualidade</a></li>
+            </ul>
+          </li>
+          <!-- <li class="nav-item dropdown">
+          <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-landmark"></i><br>
+            <span class='descricao-menu'>Portaria Fiscal</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ route('reservas.modalidades',3) }}">Agendar Recebimento</a></li>
+          </ul>
+        </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i><br>
+              <span class='descricao-menu'>Workflow</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <li><a class="dropdown-item" href="{{ route('chamados.index') }}">Solici</a></li> -->
+              <!-- <li><a class="dropdown-item" href="{{ route('chamados.create_setor',1) }}">Abrir Chamado</a></li> -->
+              <!-- <li><a class="dropdown-item" href="{{ route('chamados.AprovacaoGestor') }}">Aprovar Desenvolvimentos</a></li> -->
+
+              <li><a class="dropdown-item" href="{{ route('wf.index') }}">Aprovar solicitações</a></li>
+
+              <li><a class="dropdown-item" href="{{ route('wf.pesquisaSolicitacao') }}">Solicitações</a></li>
+
+              <li><a class="dropdown-item" href="{{ route('wf.gerencia') }}">Configurações</a></li>
+              <li><a class="dropdown-item" href="{{ route('p.home') }}">Parametros</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-wrench"></i><br>
+              <span class='descricao-menu'>Manutenção Industrial</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',3) }}">Solicitar</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',3) }}">Minhas Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[3]) }}">Solicitações</a></li>
+              <!-- <li><a href="{{ route('chamados_manut_ind.edit') }}">Solicitações</a></li> -->
+              <li><a class="dropdown-item" href="{{ route('chamados.todos',[3,0,50,1,0]) }}">Finalizados</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.terceiros',[3]) }}">Terceiros</a></li>
+              <li><a class="dropdown-item" href="{{ route('componente.movimentacao',[3]) }}">Movimentações de Componentes</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.gestor',3) }}">Gerir Solicitações</a></li>
+
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active pcTI" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-computer"></i></i><br>
+              <span class='descricao-menu'>Tec. da Informação</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',1) }}">Meus Chamados</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',1) }}">Abrir Chamado</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.AprovacaoGestor') }}">Aprovar Desenvolvimentos</a></li>
+
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[1]) }}">Gerenciar Chamados</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.terceiros',[1]) }}">Em Terceiros</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.todos',[1,0,50,1,0]) }}">Finalizados</a></li>
+              <li><a class="dropdown-item" href="{{ route('operacoes.index') }}">Operações</a></li>
+              <li><a class="dropdown-item" href="{{ route('operacoes.create') }}">Nova Operações</a></li>
+              <li><a class="dropdown-item" href="{{ route('instrucao.create') }}">Cadastrar instrução</a></li>
+              <li><a class="dropdown-item" href="{{ route('instrucao.index') }}">Instruções</a></li>
+              <li><a class="dropdown-item" href="{{ route('componente.movimentacao_saldo',[1]) }}">Movimentações de Componentes</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamado.desenv') }}">Chamados Desenvolvimento</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_recorrente',[1]) }}">Chamados Recorrentes</a></li>
+              <li><a class="dropdown-item" href="{{ route('contigencia.home') }}">Abrir Contingência</a></li>
+              <li><a class="dropdown-item" href="{{ route('contigencia.contvisualiza') }}">Contingências</a></li>
+              <!-- <li><a href="{{ route('order.index') }}">Pedidos em Aberto</a></li> -->
+              <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado') }}">Chamados Fechados</a></li>
+              <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado_status') }}">Carga Atual</a></li>
+              <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado_area') }}">Analista X Categoria</a></li>
+
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-helmet-safety"></i><br>
+              <span class='descricao-menu'>Seg. do Trabalho</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',7) }}">Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',7) }}">Solicitar</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[7]) }}">Solicitações Abertas</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.todos',[7,0,50,1,0]) }}">Finalizados</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.gestor',7) }}">Gerir Solicitações</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-address-card"></i><br>
+              <span class='descricao-menu'>Recursos Humanos</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',4) }}">Solicitar</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',4) }}">Minhas Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[4]) }}">Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.todos',[4,0,50,1,0]) }}">Arquivados</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.terceiros',[4]) }}">Em Terceiros</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.gestor',4) }}">Gerir Solicitações</a></li>
+              <li><a class="dropdown-item" href="{{ route('lgpd.index') }}">Criar Documento - LGPD</a></li>
+              <li><a class="dropdown-item" href="{{ route('lgpd.showlista') }}">Visualizar Criados - LGPD</a></li>
+
+
+            </ul>
+          </li>
+          <!-- <li class="nav-item dropdown">
+          <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-phone"></i><br>
+            <span class='descricao-menu'>Contato</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href=" {{route('branches')}}">Ramais</a></li>
+          </ul>
+        </li> -->
+          <li class="nav-item dropdown" id='notific'>
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="sino">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge">
+                  <div id='pesquisa_novo_req_aprov'></div>
+                </span>
+              </div>
+              <span class='descricao-menu' id='arruma-titulo'>Pendências</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href='{{ route('chamados.aprovacao') }}'>Chamados em Aprovação<span class="badge"></span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown float-end" id='usuarios'>
+            <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i><br>
+              <span class='descricao-menu' id='arruma-titulo'>Usuário</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/register">Novo Usuário</a></li>
+              <li><a class="dropdown-item" href="/ativos">Usuários Ativos</a></li>
+              <li><a class="dropdown-item" href="{{ route('users.inactives')}}">Usuários Inativos</a></li>
+              <li><a class="dropdown-item" href="{{ route('departments.index') }}">Setores</a></li>
+              <li><a class="dropdown-item" href=" {{route('branches')}}">Ramais</a></li>
+              <li><a class="dropdown-item" href="/logout" role="button">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script type="text/javascript">
+    document.getElementsByClassName('badge')[1].style.display = 'none'
+    document.getElementsByClassName('badge')[0].style.display = 'none'
+
+    function pesquisa_novo_req_aprov() {
+
+      $('#pesquisa_novo_req_aprov').html("");
+
+      $.get("/api/chamados/pendencia/aprovacao/{{auth()->user()->id}}", function(produto) {
+        for (u = 0; u < produto.length; u++) {
+          html = produto[u];
+          if (document.getElementsByClassName('badge')[0].innerHTML != '') {
+            document.getElementsByClassName('badge')[0].style.display = 'block';
+            document.getElementsByClassName('badge')[0].innerHTML = html;
+            document.getElementsByClassName('badge')[1].style.display = 'block';
+            document.getElementsByClassName('badge')[1].innerHTML = html;
+          }
+
+          if (document.getElementsByClassName('badge')[0].innerHTML == '0') {
+            document.getElementsByClassName('badge')[0].style.display = 'none';
+            document.getElementsByClassName('badge')[1].style.display = 'none';
+          }
+
+          if (produto[u] > 0) {
+            $('#pesquisa_novo_req_aprov').html(html);
+          };
+        }
+      });
+    }
+
+
+    document.getElementById("botao-fechador2").addEventListener("click", function() {
+      if (document.getElementById('myNav').className == 'collapse navbar-collapse') {
+        document.getElementById('myNav').className = 'navbar-collapse collapse show'
+      } else if (document.getElementById('myNav').className == 'navbar-collapse collapse show') {
+        document.getElementById('myNav').className = 'navbar-collapse collapse'
+      } else if (document.getElementById('myNav').className == 'navbar-collapse collapse') {
+        document.getElementById('myNav').className = 'navbar-collapse collapse show'
+      }
+    })
+
+    /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+      if (document.getElementById("menu").style.marginLeft != "-270px") {
+        document.getElementById("menu").style.marginLeft = "-270px"
+      } else if (document.getElementById("menu").style.marginLeft == "-270px") {
+        document.getElementById("menu").style.marginLeft = ""
+      }
+    }
+
+    $(document).ready(function() {
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar').toggleClass('active');
+      });
+
+    });
+
+    let descricao = document.getElementsByClassName('descricao-menu');
+    let teste = document.getElementsByClassName("dropdown-menu");
+    let icone = document.getElementsByClassName('nav-item');
+
+
+    let myIndex1;
+    let myIndex2;
+
+    $(icone).on("mouseover", function(event) {
+      myIndex1 = $(this).index();
+    })
+
+    $(teste).on("mouseover", function(event) {
+      myIndex2 = $(this).index();
+    })
+
+    $(teste).hover(
+      function() {
+        for (let i = 0; i < descricao.length; i++) {
+          descricao[myIndex1].style.display = 'block';
+        }
+      },
+      function() {
+        for (let i = 0; i < descricao.length; i++) {
+          // descricao[myIndex1].style.display = 'none';
+        }
+      }
+    );
+
+    $(icone).hover(
+      function() {
+        for (let i = 0; i < descricao.length; i++) {
+          descricao[myIndex1].style.display = 'block';
+        }
+      },
+      function() {
+        for (let i = 0; i < descricao.length; i++) {
+          descricao[myIndex1].style.display = 'none';
+        }
+      }
+    );
+
+
+    $(function() {
+      let row = 0;
+
+      $('#addRow').click(function() {
+        row++;
+        let temp_td = '<tr><td scope="row" class="zeroCol">' + row +
+          '</td><td class="primeiraCol"><p class="prioridadeCampo"></p><textarea class="campoId" name="name" rows="2" cols="20" placeholder="Digite aqui a prioridade."></textarea></td><td class="segundaCol"><p class="descri-tabela"></p><label for="setorSelect"></label><select name="setor" class="selectTotal setorSelect"><option value=""></option><option value="Tecnologia da Informação">Tecnologia da Informação</option><option value="Recursos Humanos">Recursos Humanos</option><option value="Engenharia">Engenharia</option></select></td><td class="terceiraCol"><p class="areaCampo"></p><label for="areaSelect"></label><select name="area" class="selectTotal areaSelect"><option value=""></option><option value="Redes">Redes</option><option value="Telefonia">Telefonia</option><option value="Software">Software</option></select></td><td class="quartaCol"><p class="tipoCampo"></p><label for="tipoSelect"></label><select name="tipo" class="selectTotal tipoSelect"><option value=""></option><option value="Liberação de Acesso">Liberação de Acesso</option><option value="Dúvidas">Dúvidas</option><option value="Desenvolvimento">Desenvolvimento</option></select></td><td class="quintaCol"><p>Aberto</p><p></p></td><td class="sextaCol"><p class="urgenciaCampo"></p><label for="urgenciaSelect"></label><select name="urgencia" class="selectTotal urgenciaSelect"><option value=""></option><option value="Normal">Normal</option><option value="Urgente">Urgente</option><option value="Crítico">Crítico</option></select></td><td class="setimaCol"><p class="designadoCampo"></p><label for="designadoSelect"></label><select name="designado" class="selectTotal designadoSelect"><option value=""></option><option value="Ailton de Souza Junior">Ailton de Souza Junior</option><option value="Carlos Henrique">Carlos Henrique</option><option value="Everson Saporetti">Everson Saporetti</option></select></td><td class="oitavaCol"><p>Descrição Teste</p><p></p></td><td class="nonaCol"><button type="button" class="btn btn-success acoes-botao salvar">Salvar</button><button type="button" class="btn btn-success acoes-botao">Chat</button><button type="button" class="btn btn-success acoes-botao editar">Editar</button><button type="button" class="btn btn-danger acoes-botao">Aprovação</button></td></tr>';
+        $('tbody').append(temp_td)
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
