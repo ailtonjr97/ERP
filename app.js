@@ -37,10 +37,20 @@ const userSchema = new mongoose.Schema({
   unidade: Array
 });
 
+const produtoSchema = new mongoose.Schema({
+  nome: String,
+  codigo: String,
+  ean: Number,
+  ca: Number,
+  ncm: Number,
+  validade: Date,
+});
+
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('User', userSchema);
+const Produto = mongoose.model('Produto', produtoSchema);
 passport.use(User.createStrategy());
 passport.serializeUser(function(user, done){
   done(null, user.id)
@@ -161,19 +171,34 @@ app.get('/ativos', function(req, res){
 
 /////////////////////////////////////////////////////////
 app.get("/dados/:dadosId", function(req, res){
-  User.findOne({_id: req.params.dadosId}, function(err, usuario){
-    res.render('dados', {
-      userId: usuario._id,
-      username: usuario.username
+  if(req.isAuthenticated()){
+    User.findOne({_id: req.params.dadosId}, function(err, usuario){
+      res.render('dados', {
+        userId: usuario._id,
+        username: usuario.username,
+        nome: usuario.dadosPessoais[0].nome,
+        data: usuario.dadosPessoais[1].nascimento,
+        cpf: usuario.dadosPessoais[2].cpf,
+        rg: usuario.dadosPessoais[3].rg,
+        setor: usuario.setor[1].setorDescri,
+        cargo: usuario.cargo[1].cargoDescri,
+        unidade: usuario.unidade[1].unidadeDescri
+      })
     })
-  })
+  }else{
+    res.redirect('/login')
+  }
 })
 
 app.post("/dados", function(req, res){
-  User.findOneAndUpdate(
+  User.updateMany(
     {"username": req.body.username },
-    {
-        $set: {"setor": req.body.setores}
+    {$set: {
+      'dadosPessoais': [{nome: req.body.nome}, {nascimento: req.body.data}, {cpf: req.body.cpf}, {rg: req.body.rg}],
+      'setor': [{setorId: req.body.setores}, {setorDescri: req.body.setorDescri}],
+      'cargo': [{cargoId: req.body.cargos}, {cargoDescri: req.body.cargoDescri}],
+      'unidade': [{unidadeId: req.body.unidade}, {unidadeDescri: req.body.unidadeDescri}]
+    }
     },
     {
         returnNewDocument: true
@@ -182,9 +207,41 @@ app.post("/dados", function(req, res){
   if(error){
     res.send('erro1')
   } else{
-    res.send('deu')
+    res.redirect('/inicio')
   }
 });
+})
+
+//////////////////////////////////////////////////////////////////////
+//Delete usuários da página dados.
+app.post('/deleteUser', function(req, res){
+  User.deleteOne({username: req.body.username}, function(err){
+    if(err){
+      console.log(err)
+      res.send('Erro ao excluir')
+    } else {
+      res.redirect('/ativos')
+    }
+  })
+})
+
+///////////////////////////////////////////////////////
+app.get('/cadastroproduto', function(req, res){
+  if(req.isAuthenticated()){
+    res.render('cadastroproduto')
+  }else{
+    res.redirect('/login')
+  }
+})
+
+app.post('/cadastroproduto', function(req, res){
+  Produto.insert({}, function(err){
+    if(err){
+      res.send('Erro')
+    } else{
+      res.redirect('/inicio')
+    }
+  })
 })
 
 

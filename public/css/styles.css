@@ -1,24 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
-
-#usuarios{
-  left: 450px;
+body{
+  width: 100%;
 }
 
-#fibraimage{
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 
+/* #usuarios{
+  right: 2vh;
 }
 
 #notific{
-  left: 450px;
-}
-
-#myNav{
-  width: 100%;
-}
-
-#fibraimage{
-  width: 100%;
-}
+  right: 2vh;
+} */
 
 #pcp{
   margin-left: 10px;
@@ -28,18 +20,9 @@
   position: relative;
 }
 
-.selectTotal{
+/* .selectTotal{
   display: none;
-}
-
-textarea{
-  display: none;
-}
-
-textarea:focus {
-  width: 300px;
-  height: 300px;
-}
+} */
 
 tbody{
   border-width: 0;
@@ -129,36 +112,36 @@ th:hover #botaoAcoes{
 .tooltip-wrap {
   position: relative;
 }
-.tooltip-wrap .tooltip-content {
+/* .tooltip-wrap .tooltip-content {
   display: none;
   bottom: 5%;
   left: 5%;
   right: 5%;
   background-color: #fff;
   padding: .5em;
-}
+} */
 .tooltip-wrap:hover .tooltip-content {
   display: block;
 }
 
 .descricao-menu{
-  font-size: 14px;
-  font-family: 'Fredoka', sans-serif;
-  display: none;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
 }
 
 .sidebar-nav {
     padding: 9px 0;
 }
 
-th{
+/* th{
   resize: horizontal;
-}
+} */
 
 .dropdown-menu{
-  font-size: 14px;
   font-family: 'Roboto', sans-serif;
-  margin-top: 0;
+  margin: 0px;
+  font-size: 14px;
 }
 
 .dropdown-menu .sub-menu {
@@ -196,16 +179,16 @@ th{
 #navbarDropdown:hover{
   color: black;
   background-color: #fff;
-  border-radius: 5px 5px 0 0;
+  /* border-radius: 5px 5px 0 0; */
 }
 
-#navbarDropdown:hover .descricao-menu{
+/* #navbarDropdown:hover .descricao-menu{
   display: block;
   border-radius: 0 0 5px 5px;
-}
+} */
 
 #navbarDropdown{
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-radius: 5px 5px 0 0;
 }
 
@@ -219,7 +202,7 @@ th{
 }
 
 .navbar-nav{
-  width: 100%;
+  margin-left: 2%;
 }
 
 .navbar-nav a{
@@ -241,206 +224,224 @@ th{
 }
 
 .descritivo-submenu{
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Roboto', sans-serif;
   padding-left: 8px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-user {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-laptop-code {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-dollar-sign {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
+}
+
+.navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-paste {
+  position: relative;
+  padding-left: 35%;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-diagram-predecessor {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-circle-check {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-dolly {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link .sino> .fa-bell {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-display-code {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-clipboard-check {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-bookmark {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-bullhorn {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-helmet-safety {
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-address-card {
   position: relative;
-  padding-left: 35%;
-  font-size: 20px;;
+  /* padding-left: 35%; */
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-shopping-cart{
   position: relative;
   padding-left: 18%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-money-bill-alt{
   position: relative;
   padding-left: 25%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-power-off{
   position: relative;
   padding-left: 25%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-arrow-right-arrow-left{
   position: relative;
   padding-left: 25%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-briefcase{
   position: relative;
   padding-left: 25%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-lock{
   position: relative;
   padding-left: 25%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-truck{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-landmark{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-chart-pie{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-computer{
   position: relative;
-  padding-left: 30%;
-  font-size: 20px;;
+  /* padding-left: 30%; */
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-gears{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-user{
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-file-contract{
   position: relative;
   padding-left: 35%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-cogs{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-industry{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-chart-bar{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-phone{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-rectangle-list{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-hammer{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
 }
 
 .navbar-icon-top .navbar-collapse .navbar-nav .nav-item .nav-link > .fa-wrench{
   position: relative;
   padding-left: 30%;
-  font-size: 20px;;
+  font-size: 18px;
+}
+
+#alinhaTI{
+  margin-left: 10px;
+}
+
+#alinhaSSMA{
+  margin-left: 12px;
+}
+
+#alinhaRH{
+  margin-left: 5px;
 }
 
 .visivel{
@@ -448,22 +449,19 @@ th{
 }
 
 #logo-fibracem{
-  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .navbar-brand{
-  margin: 0 15px 0 5px;
-  min-width: 15%;
-  min-height: 15%;
-  max-width: 15%;
-  max-height: 15%;
+  margin: 0 0 0 5px;
 }
 
-#nav-page{
-  width: 100%
-  height: 80px;
-  background-color: #22577A;
-  padding: 5px 0;
+#logofibra{
+  width: 70%;
+  height: 70%
 }
 
 .nav-item{
@@ -512,7 +510,6 @@ li.nav-item.dropdown{
 }
 
 .dropdown-item:hover{
-  font-size: 14px;
   font-family: 'Roboto', sans-serif;
   background-color: #C8E3D4;
 }
@@ -694,17 +691,18 @@ li.nav-item.dropdown{
 }
 
 #container-da-navbar{
-  width: 100%;
   padding-left: 0;
 }
 
-@media (max-width: 900px){
+@media (max-width: 949px){
   #container-da-navbar{
     width: 100%;
   }
 
   #nav-page{
     width: 100%;
+    background-color: #22577A;
+    padding: 5px 0;
   }
 
   .descricao-menu{
@@ -713,8 +711,8 @@ li.nav-item.dropdown{
   }
 
   .dropdown-item{
-    font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    font-size: 14px;
   }
 
   #navbarDropdown:hover{
@@ -725,15 +723,23 @@ li.nav-item.dropdown{
     display: block;
   }
 
-  .fas{
+  /* .fas{
     display: none;
-  }
+  } */
 
-  .fa-solid{
+  /* .fa-solid{
     display: none;
-  }
+  } */
 
   #usuarios{
     margin-left: 0;
+  }
+}
+
+@media(min-width: 950px){
+  #nav-page{
+    height: 90px;
+    background-color: #22577A;
+    padding: 5px 0;
   }
 }

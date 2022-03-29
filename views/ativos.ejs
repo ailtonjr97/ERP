@@ -155,26 +155,29 @@ tr{
             <th>E-mail</th>
             <th>Cargo</th>
             <th>Setor</th>
+            <th>Unidade</th>
             <th>Ações</th>
         </tr>
         </thead>
         <tbody>
         <%  usuario.forEach(function(usuarios){ %>
         <tr>
-            <td></td>
+            <td><%=usuarios.dadosPessoais[0].nome%></td>
             <td><%=usuarios.username%></td>
-            <td></td>
-            <td></td>
-            <td><a href="/dados/<%=usuarios._id%>">Read More</a></td>
+            <td><%=usuarios.cargo[1].cargoDescri%></td>
+            <td><%=usuarios.setor[1].setorDescri%></td>
+            <td><%=usuarios.unidade[1].unidadeDescri%></td>
+            <td>
+              <a href="/dados/<%=usuarios._id%>" class="btn btn-success">Editar</a>
+            </td>
         </tr>
         <% }) %>
         <tbody>
     </table>
 </div>
 
-
-
 <script type="text/javascript">
+
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   })
