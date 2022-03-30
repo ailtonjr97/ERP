@@ -43,7 +43,6 @@ const produtoSchema = new mongoose.Schema({
   ean: Number,
   ca: Number,
   ncm: Number,
-  validade: Date,
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -235,13 +234,34 @@ app.get('/cadastroproduto', function(req, res){
 })
 
 app.post('/cadastroproduto', function(req, res){
-  Produto.insert({}, function(err){
-    if(err){
-      res.send('Erro')
-    } else{
-      res.redirect('/inicio')
-    }
+  const produto = new Produto({
+    nome: req.body.descri,
+    codigo: req.body.codigo,
+    ean: req.body.ean,
+    ca: req.body.ca,
+    ncm: req.body.ncm,
+    validade: req.body.validade
   })
+  produto.save(function(err){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect("/inicio");
+    }
+  });
+})
+
+//////////////////////////////////////////////////
+app.get('/produtos', function(req, res){
+  if(req.isAuthenticated()){
+    Produto.find({}, function(err, produto){
+     res.render("produtos", {
+       produto: produto,
+     });
+   });
+  }else{
+    res.redirect('/login')
+  }
 })
 
 
