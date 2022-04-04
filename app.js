@@ -43,6 +43,8 @@ const produtoSchema = new mongoose.Schema({
   ean: Number,
   ca: Number,
   ncm: Number,
+  quantidade: Number,
+  lote: Array
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -239,8 +241,7 @@ app.post('/cadastroproduto', function(req, res){
     codigo: req.body.codigo,
     ean: req.body.ean,
     ca: req.body.ca,
-    ncm: req.body.ncm,
-    validade: req.body.validade
+    ncm: req.body.ncm
   })
   produto.save(function(err){
     if(err){
@@ -264,7 +265,41 @@ app.get('/produtos', function(req, res){
   }
 })
 
+//////////////////////////////////////////////////
+app.get('/entradaproduto', function(req, res){
+  if(req.isAuthenticated()){
+    Produto.find({}, function(err, produto){
+     res.render("entradaproduto", {
+       produto: produto,
+     });
+   });
+  }else{
+    res.redirect('/login')
+  }
+})
 
+app.post('/entradaproduto', function(req, res){
+  let d = new Date(req.body.validade)
+  let validade = ((('0' + (d.getDate() + 1)).slice(-2)) + '/' + (('0' + (d.getMonth() + 1)).slice(-2)) + '/' + d.getFullYear())
+  Produto.updateOne(
+    {"nome": req.body.nome },
+    {$push: {
+      'lote': [{numLote: req.body.lote}, {validade: validade}, {quantidadeLote: req.body.quantidade}],
+    }
+    },
+    {
+        returnNewDocument: true
+    }
+, function( error, result){
+  if(error){
+    res.send('erro1')
+  } else{
+    res.redirect('/inicio')
+  }
+});
+})
+
+//////////////////////////////////////////////////
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

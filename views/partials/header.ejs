@@ -54,10 +54,9 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="/cadastroproduto">Produto</a></li>
-              <li><a class="dropdown-item" href="{{ route('inventario.edit') }}">Serviço</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-dollar-sign"></i><br>
               <span class='descricao-menu'>Financeiro</span>
@@ -120,8 +119,8 @@
                 </ul>
               </li>
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-circle-check"></i><br>
               <span class='descricao-menu'>Qualidade</span>
@@ -130,39 +129,28 @@
               <li><a class="dropdown-item" href="{{ route('chamados.create_setor',5) }}">Abrir Solicitação</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',5) }}">Minhas Solicitações</a></li>
               <li><a class="dropdown-item" href="{{ route('respostaCPNC.dashboard') }}">CPNCs Painel</a></li>
-              <!-- <li><a href="{{ route('respostaCPNC.setor_cpnc') }}">CPNCs Pendentes</a></li> -->
-              <!-- <li><a href="{{ route('respostaCPNC.setor_cpnc_respondidas') }}">CPNCs Respondidas</a></li> -->
-
               <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[5]) }}">Solicitações Abertas</a></li>
               <li><a class="dropdown-item" href="{{ route('CPNC.cpncs_adm') }}">Gerenciar CPNC</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.gestor',5) }}">Solicitações Abertas</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.todos',[5,0,50,1,0]) }}">Finalizados</a></li>
               <li><a class="dropdown-item" href="{{ Route('CPNC.cpncs_produto_lib') }}">Incluir Liberação</a></li>
-
-
               <li><a class="dropdown-item" href="{{ route('setores.index') }}">Configurar Setores</a></li>
               <li><a class="dropdown-item" href="{{ route('motivosCPNC.index') }}">Configurar Motivos CPNC</a></li>
-
-
               <li><a class="dropdown-item" href="{{ route('qualidade_imagens_index') }}">Registrar Imagens</a></li>
               <li><a class="dropdown-item" href="{{ route('fotosCPNC.index') }}">Registrar Imagens CPNC</a></li>
-
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-dolly"></i><br>
               <span class='descricao-menu'>Logística</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{{ route('reservas.modalidades',3) }}">Agendar Recebimento</a></li>
               <li><a class="dropdown-item" href="/produtos">Produtos</a></li>
-              <li><a class="dropdown-item" href="{{ route('inventario.edit') }}">Inventário Cego</a></li>
-              <li><a class="dropdown-item" href="{{ route('inventario.recontagem',5) }}">Inventário Recontagem</a></li>
-              <li><a class="dropdown-item" href="{{ route('inventario.recontagemHistorico') }}">Histórico Recontagem</a></li>
+              <li><a class="dropdown-item" href="/entradaproduto">Entrada de Produtos</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-bookmark"></i><br>
               <span class='descricao-menu'>Reservas</span>
@@ -172,7 +160,7 @@
               <li><a class="dropdown-item" href="{{ route('reservas.modalidades',2) }}"> Veículos</a></li>
               <li><a class="dropdown-item" href="{{ route('reservas.modalidades',4) }}"> Laboratório da Qualidade</a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- <li class="nav-item dropdown">
           <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-landmark"></i><br>
@@ -182,15 +170,15 @@
             <li><a class="dropdown-item" href="{{ route('reservas.modalidades',3) }}">Agendar Recebimento</a></li>
           </ul>
         </li> -->
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-arrow-right-arrow-left"></i><br>
               <span class='descricao-menu'>Workflow</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <!-- <li><a class="dropdown-item" href="{{ route('chamados.index') }}">Solici</a></li> -->
-              <!-- <li><a class="dropdown-item" href="{{ route('chamados.create_setor',1) }}">Abrir Chamado</a></li> -->
-              <!-- <li><a class="dropdown-item" href="{{ route('chamados.AprovacaoGestor') }}">Aprovar Desenvolvimentos</a></li> -->
+              <li><a class="dropdown-item" href="{{ route('chamados.index') }}">Solici</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.create_setor',1) }}">Abrir Chamado</a></li>
+              <li><a class="dropdown-item" href="{{ route('chamados.AprovacaoGestor') }}">Aprovar Desenvolvimentos</a></li>
 
               <li><a class="dropdown-item" href="{{ route('wf.index') }}">Aprovar solicitações</a></li>
 
@@ -200,8 +188,8 @@
               <li><a class="dropdown-item" href="{{ route('p.home') }}">Parametros</a></li>
 
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-wrench"></i><br>
               <span class='descricao-menu'>M. Industrial</span>
@@ -210,7 +198,7 @@
               <li><a class="dropdown-item" href="{{ route('chamados.create_setor',3) }}">Solicitar</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.indexSetores',3) }}">Minhas Solicitações</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.edit_setor',[3]) }}">Solicitações</a></li>
-              <!-- <li><a href="{{ route('chamados_manut_ind.edit') }}">Solicitações</a></li> -->
+              <li><a href="{{ route('chamados_manut_ind.edit') }}">Solicitações</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.todos',[3,0,50,1,0]) }}">Finalizados</a></li>
               <li><a class="dropdown-item" href="{{ route('chamados.terceiros',[3]) }}">Terceiros</a></li>
               <li><a class="dropdown-item" href="{{ route('componente.movimentacao',[3]) }}">Movimentações de Componentes</a></li>
@@ -218,8 +206,8 @@
 
 
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active pcTI" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-computer"></i></i><br>
               <span class='descricao-menu'>TI</span>
@@ -241,15 +229,15 @@
               <li><a class="dropdown-item" href="{{ route('chamados.edit_recorrente',[1]) }}">Chamados Recorrentes</a></li>
               <li><a class="dropdown-item" href="{{ route('contigencia.home') }}">Abrir Contingência</a></li>
               <li><a class="dropdown-item" href="{{ route('contigencia.contvisualiza') }}">Contingências</a></li>
-              <!-- <li><a href="{{ route('order.index') }}">Pedidos em Aberto</a></li> -->
+              <li><a href="{{ route('order.index') }}">Pedidos em Aberto</a></li>
               <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado') }}">Chamados Fechados</a></li>
               <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado_status') }}">Carga Atual</a></li>
               <li><a class="dropdown-item" href="{{ route('indicadorChamado.designado_area') }}">Analista X Categoria</a></li>
 
 
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-helmet-safety"></i><br>
               <span class='descricao-menu'>SSMA</span>
@@ -262,8 +250,8 @@
               <li><a class="dropdown-item" href="{{ route('chamados.gestor',7) }}">Gerir Solicitações</a></li>
 
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-address-card"></i><br>
               <span class='descricao-menu'>RH</span>
@@ -280,7 +268,7 @@
 
 
             </ul>
-          </li>
+          </li> -->
           <!-- <li class="nav-item dropdown">
           <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-phone"></i><br>
@@ -290,7 +278,7 @@
             <li><a class="dropdown-item" href=" {{route('branches')}}">Ramais</a></li>
           </ul>
         </li> -->
-          <li class="nav-item dropdown" id='notific'>
+          <!-- <li class="nav-item dropdown" id='notific'>
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="sino">
                 <i class="fa-solid fa-bell"></i>
@@ -303,7 +291,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href='{{ route('chamados.aprovacao') }}'>Chamados em Aprovação<span class="badge"></span></a></li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item dropdown float-end" id='usuarios'>
             <a class="nav-link active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-user"></i><br>
@@ -312,10 +300,10 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="/register">Novo Usuário</a></li>
               <li><a class="dropdown-item" href="/ativos">Usuários Ativos</a></li>
-              <li><a class="dropdown-item" href="{{ route('users.inactives')}}">Usuários Inativos</a></li>
+              <!-- <li><a class="dropdown-item" href="{{ route('users.inactives')}}">Usuários Inativos</a></li>
               <li><a class="dropdown-item" href="{{ route('departments.index') }}">Setores</a></li>
               <li><a class="dropdown-item" href=" {{route('branches')}}">Ramais</a></li>
-              <li><a class="dropdown-item" href="/logout" role="button">Sair</a></li>
+              <li><a class="dropdown-item" href="/logout" role="button">Sair</a></li> -->
             </ul>
           </li>
         </ul>
