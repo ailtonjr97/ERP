@@ -201,6 +201,12 @@ th:hover #botaoAcoes{
   font-size: 20px;
 }
 
+.userlogado{
+  margin-bottom: 0;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
 .navbar-nav{
   margin-left: 2%;
 }

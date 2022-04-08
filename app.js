@@ -44,7 +44,14 @@ const produtoSchema = new mongoose.Schema({
   ca: Number,
   ncm: Number,
   quantidade: Number,
-  lote: Array
+  lote: Array,
+  gtin: Number,
+  un: String,
+  categoria: String,
+  utilizacao: String,
+  familia: String,
+  origem: String,
+  nf: Number
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -96,6 +103,8 @@ app.post('/login', function(req, res){
   })
 
 });
+//////////////////////////////////////////////////////////////
+
 
 ///////////////////////////////////////////////////////////////
 app.get('/register', function(req, res){
@@ -103,7 +112,7 @@ app.get('/register', function(req, res){
     res.render('register');
   }else{
     res.redirect('/login')
-  }
+  };
 });
 
 app.post('/register', function(req, res){
@@ -185,9 +194,9 @@ app.get("/dados/:dadosId", function(req, res){
         cargo: usuario.cargo[1].cargoDescri,
         unidade: usuario.unidade[1].unidadeDescri
       })
-    })
+    });
   }else{
-    res.redirect('/login')
+    res.redirect('/login');
   }
 })
 
@@ -241,7 +250,13 @@ app.post('/cadastroproduto', function(req, res){
     codigo: req.body.codigo,
     ean: req.body.ean,
     ca: req.body.ca,
-    ncm: req.body.ncm
+    ncm: req.body.ncm,
+    un: req.body.un,
+    gtin: req.body.gtin,
+    categoria: req.body.categoria,
+    utilizacao: req.body.utilizacao,
+    familia: req.body.familia,
+    origem: req.body.origem
   })
   produto.save(function(err){
     if(err){
@@ -283,14 +298,14 @@ app.post('/entradaproduto', function(req, res){
   let validade = ((('0' + (d.getDate() + 1)).slice(-2)) + '/' + (('0' + (d.getMonth() + 1)).slice(-2)) + '/' + d.getFullYear())
   Produto.updateOne(
     {"nome": req.body.nome },
-    {$push: {
-      'lote': [{numLote: req.body.lote}, {validade: validade}, {quantidadeLote: req.body.quantidade}],
-    }
+    {
+      $push: {'lote': [{numLote: req.body.lote}, {validade: validade}, {quantidadeLote: req.body.quantidade}, {numeroNota: req.body.nf}]},
+      $inc: {'quantidade': req.body.quantidade}
     },
     {
         returnNewDocument: true
-    }
-, function( error, result){
+    },
+  function( error, result){
   if(error){
     res.send('erro1')
   } else{
@@ -300,6 +315,34 @@ app.post('/entradaproduto', function(req, res){
 })
 
 //////////////////////////////////////////////////
+
+app.get('/saidaproduto', function(req, res){
+  if(req.isAuthenticated()){
+    Produto.find({'nome': req.query.nome}, function(err, produto){
+     res.render("saidaproduto", {
+       produto: produto,
+     });
+   });
+  }else{
+    res.redirect('/login')
+  }
+})
+
+////////////////////////////////////////////////
+
+app.get('/procurasaidaproduto', function(req, res){
+  if(req.isAuthenticated()){
+    Produto.find({}, function(err, produto){
+     res.render("procurasaidaproduto", {
+       produto: produto,
+     });
+   });
+  }else{
+    res.redirect('/login')
+  }
+})
+
+////////////////////////////////////////////////
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

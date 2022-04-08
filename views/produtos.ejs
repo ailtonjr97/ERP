@@ -170,11 +170,17 @@
         <th>CA</th>
         <th>NCM</th>
         <th>Lote</th>
+        <th>Quantidade Total</th>
+        <th>UN</th>
+        <th>GTIN</th>
+        <th>Categoria</th>
+        <th>Utilização</th>
+        <th>Família</th>
+        <th>Origem</th>
       </tr>
     </thead>
     <tbody>
       <%  produto.forEach(function(produtos){ %>
-        <%console.log(produtos) %>
       <tr>
         <td><%=produtos.nome%></td>
         <td><%=produtos.codigo%></td>
@@ -182,27 +188,31 @@
         <td><%=produtos.ca%></td>
         <td><%=produtos.ncm%></td>
         <td>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%=produtos.nome%>">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%=produtos._id%>">
             Lotes
           </button>
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal<%=produtos.nome%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="<%=produtos._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  <div class="table-wrapper table-hover table-responsive" id='tabela'>
+                  <div class="table-wrapper table-hover" id='tabela'>
                     <table class="fl-table" id='tabela2'>
                       <thead>
                         <tr>
-                          <th>Número Lote</th>
+                          <th>Número do Lote</th>
                           <th>Data de Validade</th>
                           <th>Quantidade</th>
+                          <th>Número NF</th>
                         </tr>
                       </thead>
                       <tbody>
                         <% for(let i = 0; i < produtos.lote.length; i++) { %>
                         <tr>
                           <td><%=produtos.lote[i][0].numLote%></td>
+                          <td><%=produtos.lote[i][1].validade%></td>
+                          <td><%=produtos.lote[i][2].quantidadeLote%></td>
+                          <td><%=produtos.lote[i][3].numeroNota%></td>
                         </tr>
                         <% } %>
                       <tbody>
@@ -216,7 +226,13 @@
             </div>
           </div>
         </td>
-        <td><%=produtos.lote[0][0].numLote%></td>
+        <td><%=produtos.quantidade%></td>
+        <td><%=produtos.un%></td>
+        <td><%=produtos.gtin%></td>
+        <td><%=produtos.categoria%></td>
+        <td><%=produtos.utilizacao%></td>
+        <td><%=produtos.familia%></td>
+        <td><%=produtos.origem%></td>
       </tr>
       <% }) %>
     <tbody>
