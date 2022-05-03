@@ -7,13 +7,19 @@ const _ = require("lodash");
 const session = require('express-session')
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose')
+const path = require("path");
 var findOrCreate = require('mongoose-findorcreate')
 require('dotenv').config()
 
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "frontend2/react-app/public", "index.html"));
+});
 
 app.use(session({
   secret: process.env.PASSWORD,
@@ -344,7 +350,13 @@ app.get('/procurasaidaproduto', function(req, res){
 
 ////////////////////////////////////////////////
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.get('/react', function(req, res){
+  res.sendFile(__dirname, "public", "index.html");
+});
+
+////////////////////////////////////////////////
+
+app.listen(5000, function() {
+  console.log("Server started on port 5000");
 });
 
